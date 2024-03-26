@@ -2,18 +2,46 @@ import 'package:flutter/material.dart';
 
 import 'package:installitaion_class_datatype_variable_theme_route/home.dart';
 
-class Loginpage extends StatelessWidget {
+class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
 
+  @override
+  State<Loginpage> createState() => _LoginpageState();
+}
+
+class _LoginpageState extends State<Loginpage> {
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-        'Day1 ||Day 2|| Day 3',
-        style: TextStyle(
-            color: Colors.blue, fontSize: 25, fontWeight: FontWeight.bold),
-      )),
+          centerTitle: true,
+          title: RichText(
+            text: const TextSpan(children: [
+              TextSpan(
+                text: ' Welcome ',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
+              TextSpan(text: ' to the '),
+              TextSpan(
+                text: ' Login ',
+                style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
+              TextSpan(
+                text: ' Page ',
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
+            ]),
+          )),
       body: Center(
         child: SizedBox(
           width: 500,
@@ -30,35 +58,43 @@ class Loginpage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const TextField(
+              Text(
+                'Welcome $name',
+                style: const TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
                 autocorrect: true,
                 enabled: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(Icons.email),
+                  suffixIconColor: Colors.blue,
                   hintText: 'enter your email',
                   hintStyle: TextStyle(color: Colors.green),
                   labelText: 'email',
                   labelStyle: TextStyle(color: Colors.brown),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                          color: Colors.red, style: BorderStyle.solid)),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
+                onChanged: (value) {
+                  name = value;
+                  setState(() {});
+                },
               ),
               const TextField(
+                obscureText: true,
                 autocorrect: true,
                 enabled: true,
                 decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.lock),
+                  suffixIconColor: Colors.red,
                   hintText: 'enter your password',
                   labelStyle: TextStyle(color: Colors.brown),
                   hintStyle: TextStyle(color: Colors.red),
                   labelText: 'password',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(
-                          color: Colors.green, style: BorderStyle.solid)),
                 ),
               ),
               const SizedBox(
