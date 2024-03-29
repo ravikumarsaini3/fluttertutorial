@@ -14,13 +14,13 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   bool checkbutton = false;
   String name = '';
-  var _formkey = GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
   void gotohome() async {
     if (_formkey.currentState!.validate()) {
       setState(() {});
       checkbutton = true;
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       await Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return const Homepage();
@@ -118,7 +118,7 @@ class _LoginpageState extends State<Loginpage> {
                     obscureText: true,
                     autocorrect: true,
                     enabled: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.lock),
                       suffixIconColor: Colors.red,
                       hintText: 'enter your password',
@@ -143,7 +143,7 @@ class _LoginpageState extends State<Loginpage> {
                 InkWell(
                   onTap: () => gotohome(),
                   child: AnimatedContainer(
-                    duration: Duration(seconds: 1),
+                    duration: const Duration(seconds: 1),
                     height: 50,
                     width: checkbutton ? 50 : 150,
                     decoration: BoxDecoration(
@@ -151,11 +151,11 @@ class _LoginpageState extends State<Loginpage> {
                             BorderRadius.circular(checkbutton ? 50 : 10),
                         color: Colors.teal),
                     child: checkbutton
-                        ? Icon(
+                        ? const Icon(
                             Icons.done_outline,
                             color: Colors.white,
                           )
-                        : Text(
+                        : const Text(
                             'Login',
                             style: TextStyle(color: Colors.white),
                           ),
