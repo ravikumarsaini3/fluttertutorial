@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:installitaion_class_datatype_variable_theme_route/home.dart';
 
 class Loginpage extends StatefulWidget {
@@ -20,6 +20,7 @@ class _LoginpageState extends State<Loginpage> {
       setState(() {});
       checkbutton = true;
       await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return const Homepage();
@@ -149,6 +150,7 @@ class _LoginpageState extends State<Loginpage> {
                         borderRadius:
                             BorderRadius.circular(checkbutton ? 50 : 10),
                         color: Colors.teal),
+                    alignment: Alignment.center,
                     child: checkbutton
                         ? const Icon(
                             Icons.done_outline,
@@ -158,7 +160,6 @@ class _LoginpageState extends State<Loginpage> {
                             'Login',
                             style: TextStyle(color: Colors.white),
                           ),
-                    alignment: Alignment.center,
                   ),
                 )
                 /* ElevatedButton(

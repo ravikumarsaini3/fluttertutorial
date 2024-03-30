@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:installitaion_class_datatype_variable_theme_route/login.dart';
 
 class Homepage extends StatelessWidget {
@@ -21,40 +19,41 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
           title: const Text(
         'Home Screen ',
-        style: TextStyle(
-            color: Colors.blue, fontSize: 25, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
       )),
       drawer: Drawer(
-        // backgroundColor: Colors.purple,
+        backgroundColor: Colors.teal.shade800,
         elevation: 10,
         shadowColor: Colors.teal,
         child: ListView(
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
+                  color: Colors.green,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   border: Border.all(width: 1)),
               margin: const EdgeInsets.all(1),
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Colors.teal.shade800),
                 margin: EdgeInsets.zero,
                 accountName: const Text(
                   'Ravi saini',
-                  style:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 accountEmail: const Text(
                   'ravik392320@gmail.com',
                   style: TextStyle(
-                      color: Colors.green, fontWeight: FontWeight.w700),
+                      color: Colors.white, fontWeight: FontWeight.w700),
                 ),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(url3),
                   minRadius: 30,
                 ),
-                arrowColor: Colors.white,
+                arrowColor: Colors.black,
                 onDetailsPressed: () {},
-                otherAccountsPictures: [
+                /*  otherAccountsPictures: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(url),
                   ),
@@ -64,7 +63,7 @@ class Homepage extends StatelessWidget {
                   CircleAvatar(
                     backgroundImage: NetworkImage(url3),
                   )
-                ],
+                ],*/
               ),
             ),
             const SizedBox(
@@ -79,7 +78,7 @@ class Homepage extends StatelessWidget {
                 ));
               },
               // autofocus: true,
-              enabled: true,
+              // enabled: true,
               trailing: const Icon(Icons.arrow_right_sharp),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(url2),
@@ -88,7 +87,7 @@ class Homepage extends StatelessWidget {
               title: const Text(
                 'Shri Krishna',
                 style: TextStyle(
-                    color: Colors.red,
+                    color: Colors.white,
                     fontSize: 13,
                     fontWeight: FontWeight.w700),
               ),
@@ -106,7 +105,7 @@ class Homepage extends StatelessWidget {
               title: const Text(
                 'Shri Radha Rani',
                 style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.white,
                     fontSize: 13,
                     fontWeight: FontWeight.w900),
               ),
