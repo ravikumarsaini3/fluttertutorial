@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:installitaion_class_datatype_variable_theme_route/home.dart';
 
 class Loginpage extends StatefulWidget {
@@ -65,7 +64,7 @@ class _LoginpageState extends State<Loginpage> {
           )),
       body: Center(
         child: SizedBox(
-          width: 500,
+          width: 502,
           child: Form(
             key: _formkey,
             child: Column(
