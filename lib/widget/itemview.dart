@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/models/model.dart';
 
 class Itemview extends StatelessWidget {
-  
   final Model model;
 
   const Itemview({super.key, required this.model});
