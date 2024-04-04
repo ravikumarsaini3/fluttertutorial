@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:installitaion_class_datatype_variable_theme_route/login.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/models/model.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/widget/drawer.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/widget/itemview.dart';
 
 class Homepage extends StatefulWidget {
@@ -15,17 +16,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final url =
-      'https://m.media-amazon.com/images/I/61PumHSySxL._AC_UF1000,1000_QL80_.jpg';
-
-  final url2 =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh3TlKxGJVcODV6qUQvl7XOYdYL0MSDE_8TT87-07-RQ&s";
-
-  final url3 =
-      "https://cdn.pixabay.com/photo/2023/06/23/08/51/lord-krishna-8083043_640.png";
-
-  final url4 =
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBliaJgqG1AmFjx8ISlGS9l7y8BMM0wmwFy0wTWb1LdRV1rLt_p0j-1rx7_b4JMB1ciVw&usqp=CAU";
   @override
   void initState() {
     super.initState();
@@ -54,103 +44,24 @@ class _HomepageState extends State<Homepage> {
           ' Home Screen ',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
-        drawer: Drawer(
-          backgroundColor: Colors.teal.shade800,
-          elevation: 10,
-          shadowColor: Colors.teal,
-          child: ListView(
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(width: 1),
-                ),
-                margin: const EdgeInsets.all(1),
-                padding: EdgeInsets.zero,
-                child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.teal.shade800),
-                  margin: EdgeInsets.zero,
-                  accountName: const Text(
-                    'Ravi saini',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  accountEmail: const Text(
-                    'ravik392320@gmail.com',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w700),
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(url3),
-                    minRadius: 30,
-                  ),
-                  arrowColor: Colors.black,
-                  onDetailsPressed: () {},
-                  /*  otherAccountsPictures: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(url),
-                  ),
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(url2),
-                  ),
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(url3),
-                  )
-                ],*/
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const Loginpage();
-                    },
-                  ));
-                },
-                // autofocus: true,
-                // enabled: true,
-                trailing: const Icon(Icons.arrow_right_sharp),
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(url2),
-                  //   foregroundImage: NetworkImage(url),
-                ),
-                title: const Text(
-                  'Shri Krishna',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              const Divider(
-                  // thickness: 400,
-                  ),
-              ListTile(
-                autofocus: true,
-                enabled: true,
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(url4),
-                  //   foregroundImage: NetworkImage(url),
-                ),
-                title: const Text(
-                  'Shri Radha Rani',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w900),
-                ),
-              )
-            ],
-          ),
-        ),
-        body: (catalogModel.items.isNotEmpty)
+        drawer: drawer(),
+        body: Column(
+          children: [
+            catalogheader(),
+            if (catalogModel.items.isNotEmpty)
+              const Expanded(child: CatalogList())
+            else
+              const CircularProgressIndicator(),
+          ],
+        )
+
+        /*(catalogModel.items.isNotEmpty)
             ? GridView.builder(
                 itemCount: catalogModel.items.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 1,
+                    mainAxisSpacing: 10,
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   final item = catalogModel.items[index];
@@ -162,7 +73,7 @@ class _HomepageState extends State<Homepage> {
                       child: GridTile(
                         child: Image.network(item.image),
                         header: Text(item.name),
-                        footer: Text("R${item.price.toString()}"),
+                        footer: Text("\$${item.price.toString()}"),
                       ),
                     ),
                   );
@@ -170,6 +81,133 @@ class _HomepageState extends State<Homepage> {
               )
             : const Center(
                 child: CircularProgressIndicator(),
-              ));
+              )*/
+
+        );
+  }
+}
+
+class catalogheader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Catalog App',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          Text(
+            'Trending product ',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CatalogList extends StatelessWidget {
+  const CatalogList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: catalogModel.items.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        final catalog = catalogModel.items[index];
+        return CatalogItem(
+          catalog: catalog,
+        );
+      },
+    );
+  }
+}
+
+class CatalogItem extends StatelessWidget {
+  final Item catalog;
+  const CatalogItem({super.key, required this.catalog});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20), border: Border.all()),
+          height: 130,
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(catalog.id.toString()),
+                const SizedBox(
+                  width: 10,
+                ),
+                Image.network(
+                  catalog.image,
+                  fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          catalog.name,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        ButtonBar(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 2,
+                                    backgroundColor: Colors.blueGrey.shade100),
+                                child: const Text(
+                                  'BUY',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                )),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "\$${catalog.price.toString()}",
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
