@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:installitaion_class_datatype_variable_theme_route/login.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/models/model.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/widget/drawer.dart';
-import 'package:installitaion_class_datatype_variable_theme_route/widget/itemview.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -46,12 +44,14 @@ class _HomepageState extends State<Homepage> {
         )),
         drawer: drawer(),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             catalogheader(),
             if (catalogModel.items.isNotEmpty)
               const Expanded(child: CatalogList())
             else
-              const CircularProgressIndicator(),
+              Center(child: const CircularProgressIndicator()),
           ],
         )
 
@@ -137,16 +137,14 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: const EdgeInsets.all(8.0),
       child: Card(
+        shadowColor: Colors.blue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20), border: Border.all()),
+        child: SizedBox(
           height: 130,
-          width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(6.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -198,11 +196,11 @@ class CatalogItem extends StatelessWidget {
                                   fontSize: 17),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

@@ -1,15 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class catalogModel {
-  static List<Item> items = [
-    Item(
-      id: 1,
-      image:
-          "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-      name: "CHECK PRINT SHIRT",
-      price: 110,
-    ),
-  ];
+  static List<Item> items = [];
 }
 
 class Item {
