@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/widget/cart.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/widget/home_details.dart';
 
 import 'package:installitaion_class_datatype_variable_theme_route/models/model.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/widget/drawer.dart';
@@ -37,11 +39,23 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     //  final dummylist = List.generate(30, (index) => itemmodel.items[0]);
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return cart();
+              },
+            ));
+          },
+          child: Icon(Icons.card_travel_outlined),
+          backgroundColor: Colors.brown.shade300,
+        ),
         appBar: AppBar(
+            backgroundColor: Colors.transparent,
             title: const Text(
-          ' Home Screen ',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        )),
+              ' Home Screen ',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            )),
         drawer: drawer(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -122,8 +136,22 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         final catalog = catalogModel.items[index];
-        return CatalogItem(
-          catalog: catalog,
+        return Hero(
+          tag: Key(catalog.id.toString()),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return Home_details(
+                    catalog: catalog,
+                  );
+                },
+              ));
+            },
+            child: CatalogItem(
+              catalog: catalog,
+            ),
+          ),
         );
       },
     );
@@ -137,7 +165,7 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(7.0),
       child: Card(
         shadowColor: Colors.blue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -149,10 +177,6 @@ class CatalogItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(catalog.id.toString()),
-                const SizedBox(
-                  width: 10,
-                ),
                 Image.network(
                   catalog.image,
                   fit: BoxFit.cover,
@@ -173,21 +197,6 @@ class CatalogItem extends StatelessWidget {
                         ),
                         ButtonBar(
                           children: [
-                            ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    elevation: 2,
-                                    backgroundColor: Colors.blueGrey.shade100),
-                                child: const Text(
-                                  'BUY',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                )),
-                            const SizedBox(
-                              width: 10,
-                            ),
                             Text(
                               "\$${catalog.price.toString()}",
                               style: const TextStyle(
@@ -195,6 +204,21 @@ class CatalogItem extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17),
                             ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 2,
+                                    backgroundColor: Colors.blueGrey.shade100),
+                                child: const Text(
+                                  'ADD TO CART',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                )),
                           ],
                         ),
                       ],
