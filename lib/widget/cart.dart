@@ -1,15 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'CART',
           style: TextStyle(
               color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
         ),
+      ),
+      body: Column(
+        children: [Expanded(child: listitem()), const Divider(), _cardtotal()],
+      ),
+    );
+  }
+}
+
+class _cardtotal extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text(
+            '\$600',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(
+            width: 100,
+            child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    elevation: 5,
+                    foregroundColor: Colors.blueAccent,
+                    shadowColor: Colors.green),
+                child: const Text(
+                  'BUY',
+                  style: TextStyle(color: Colors.white),
+                )),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class listitem extends StatefulWidget {
+  @override
+  State<listitem> createState() => _listitemState();
+}
+
+class _listitemState extends State<listitem> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemCount: 220,
+        itemBuilder: (context, index) {
+          return const ListTile(
+            leading: Icon(Icons.done),
+            title: Text('Title'),
+            trailing: Icon(Icons.minimize),
+          );
+        },
       ),
     );
   }
