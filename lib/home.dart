@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/models/cart_model.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/widget/cardadd.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/widget/cart.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/widget/home_details.dart';
 
@@ -224,47 +225,9 @@ class CatalogItem extends StatelessWidget {
   }
 }
 
-class addtocart extends StatefulWidget {
-  final Item catalog;
-  const addtocart({
-    super.key,
-    required this.catalog,
-  });
-
-  @override
-  State<addtocart> createState() => _addtocartState();
-}
-
-class _addtocartState extends State<addtocart> {
-  var istrue = false;
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          istrue = true;
-
-          final _cart = cartmodel();
-          final _catalog = catalogModel();
-          _cart.catalog = _catalog;
-          _cart.additem(widget.catalog);
-          setState(() {});
-        },
-        style: ElevatedButton.styleFrom(
-            elevation: 2, backgroundColor: Colors.blueGrey.shade100),
-        child: istrue
-            ? Icon(Icons.done)
-            : const Text(
-                'ADD TO CART',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
-              ));
-  }
-}
-
+/*
 class _addtocart extends StatelessWidget {
-  const _addtocart({
+  _addtocart({
     super.key,
   });
 
@@ -281,3 +244,4 @@ class _addtocart extends StatelessWidget {
         ));
   }
 }
+*/

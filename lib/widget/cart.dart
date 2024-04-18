@@ -73,16 +73,23 @@ class _listitemState extends State<listitem> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-        itemCount: _cart.items.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: const Icon(Icons.done),
-            title: Text('${_cart.items[index].name}'),
-            trailing: const Icon(Icons.minimize),
-          );
-        },
-      ),
+      child: _cart.items.isEmpty
+          ? Center(child: Text('nothing to show'))
+          : ListView.builder(
+              itemCount: _cart.items.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.done),
+                  title: Text('${_cart.items[index].name}'),
+                  trailing: IconButton(
+                      onPressed: () {
+                        _cart.removeitem(_cart.items[index]);
+                        setState(() {});
+                      },
+                      icon: Icon(Icons.minimize)),
+                );
+              },
+            ),
     );
   }
 }

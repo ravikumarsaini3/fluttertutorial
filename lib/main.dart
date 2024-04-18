@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:installitaion_class_datatype_variable_theme_route/home.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/login.dart';
 
 import 'package:installitaion_class_datatype_variable_theme_route/theams.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: mytheame.lighttheame(context),
       darkTheme: mytheame.darktheame(context),
-      home: const Homepage(),
+      home: const Loginpage(),
       /* initialRoute: "/home",
       routes: {
         "/home": (context) => const Homepage(),
