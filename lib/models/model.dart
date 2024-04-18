@@ -1,12 +1,24 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+
+
 class catalogModel {
+
+static final catModel= catalogModel._internal();
+ catalogModel._internal(); 
+
+ factory catalogModel()=>catModel; 
+
   static List<Item> items = [];
+   Item getByiId(int id)=>items.firstWhere((element) => element.id==id, orElse: null);
+   Item getByPosition(int pos)=>items[pos];
+    
+   
 }
 
 class Item {
   String image;
-  num id;
+  var id;
   String name;
   num price;
 

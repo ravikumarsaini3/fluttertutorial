@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:installitaion_class_datatype_variable_theme_route/models/cart_model.dart';
 
 class cart extends StatelessWidget {
   @override
@@ -20,6 +21,7 @@ class cart extends StatelessWidget {
 }
 
 class _cardtotal extends StatelessWidget {
+  final _cart = cartmodel();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,9 +29,9 @@ class _cardtotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Text(
-            '\$600',
-            style: TextStyle(
+          Text(
+            '\$${_cart.totalPrice}',
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 15,
@@ -38,7 +40,12 @@ class _cardtotal extends StatelessWidget {
           SizedBox(
             width: 100,
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                        "BUY not suported yet  try again after some time later "),
+                  ));
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     elevation: 5,
@@ -61,17 +68,18 @@ class listitem extends StatefulWidget {
 }
 
 class _listitemState extends State<listitem> {
+  final _cart = cartmodel();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView.builder(
-        itemCount: 220,
+        itemCount: _cart.items.length,
         itemBuilder: (context, index) {
-          return const ListTile(
-            leading: Icon(Icons.done),
-            title: Text('Title'),
-            trailing: Icon(Icons.minimize),
+          return ListTile(
+            leading: const Icon(Icons.done),
+            title: Text('${_cart.items[index].name}'),
+            trailing: const Icon(Icons.minimize),
           );
         },
       ),
